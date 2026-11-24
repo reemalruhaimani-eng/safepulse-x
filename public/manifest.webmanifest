@@ -1,0 +1,10 @@
+{
+  "name": "SafePulse X – Guardian 360°",
+  "short_name": "SafePulse X",
+  "description": "Privacy-first family safety space",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fcf7ff",
+  "theme_color": "#592d85",
+  "icons": [{"src":"/icon.svg","type":"image/svg+xml","sizes":"any","purpose":"any maskable"}]
+}

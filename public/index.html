@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#592d85">
+  <meta name="description" content="SafePulse X — مساحة أمان عائلية مع مشاركة اختيارية ومباشرة">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <link rel="stylesheet" href="/style.css">
+  <title>SafePulse X · Guardian 360°</title>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="SafePulse X home"><span class="brand-icon">♥</span><span>SafePulse <b>X</b><small>Guardian 360°</small></span></a>
+      <div class="topbar-right"><span id="onlinePill" class="online-pill" hidden><i></i><span data-i18n="protected">مساحة خاصة</span></span><button id="langBtn" class="icon-button" type="button" aria-label="Switch language">EN</button><button id="logoutBtn" class="btn ghost tiny" type="button" hidden data-i18n="logout">تسجيل الخروج</button></div>
+    </header>
+
+    <main>
+      <section id="guestView" class="guest-layout">
+        <div class="hero">
+          <div class="eyebrow">✦ <span data-i18n="welcomeTag">الأمان يبدأ بالموافقة</span></div>
+          <h1 data-i18n="heroTitle">ابقَ قريبًا.<br><em>ابقَ آمنًا.</em></h1>
+          <p class="hero-text" data-i18n="heroDescription">تطبيق عائلي للتواصل السريع. اربطوا الأجهزة برمز، شاركوا موقعًا عند الحاجة، وابدؤوا مكالمة كاميرا وميكروفون فقط بموافقة واضحة.</p>
+          <div class="hero-features"><div>🛡️ <span data-i18n="feature1">حسابات خاصة</span></div><div>🔗 <span data-i18n="feature2">ربط برمز مؤقت</span></div><div>🎥 <span data-i18n="feature3">بث بموافقة الطرفين</span></div></div>
+          <div class="hero-orbit"><span class="orbit-heart">♥</span><span class="orbit-dot dot-a">✦</span><span class="orbit-dot dot-b">✧</span></div>
+        </div>
+        <section class="card auth-card" aria-label="Account">
+          <div class="tabs" role="tablist" aria-label="تسجيل الحساب"><button id="loginTab" role="tab" class="tab active" type="button" aria-selected="true" data-i18n="login">تسجيل الدخول</button><button id="signupTab" role="tab" class="tab" type="button" aria-selected="false" data-i18n="signup">إنشاء حساب</button></div>
+          <h2 id="authTitle" data-i18n="loginTitle">ياهلا برجعتج 👋</h2><p id="authSubtitle" class="muted" data-i18n="loginSubtitle">ادخلي بحسابج من غير إيميل ولا رسائل تأكيد.</p>
+          <form id="authForm" autocomplete="on">
+            <label id="displayNameWrap" class="field" hidden><span data-i18n="name">الاسم الظاهر</span><input id="displayName" name="name" autocomplete="name" placeholder="مثلاً: عبير" maxlength="60"></label>
+            <label class="field"><span data-i18n="username">اسم المستخدم</span><input id="username" name="username" autocomplete="username" placeholder="abeer_123" minlength="3" maxlength="24" autocapitalize="off" spellcheck="false" required><small data-i18n="usernameHint">حروف إنجليزية وأرقام، من غير @</small></label>
+            <label class="field"><span data-i18n="password">كلمة المرور</span><input id="password" name="password" type="password" autocomplete="current-password" minlength="10" required placeholder="••••••••••"></label>
+            <fieldset id="roleWrap" class="role-choices" hidden><legend data-i18n="accountType">نوع الحساب</legend><label><input type="radio" name="role" value="child" checked><span>🌱 <strong data-i18n="child">طفل أو مراهق</strong></span></label><label><input type="radio" name="role" value="guardian"><span>💜 <strong data-i18n="guardian">ولي أمر</strong></span></label></fieldset>
+            <button class="btn primary full" type="submit" id="authSubmit" data-i18n="login">تسجيل الدخول</button>
+            <p id="authError" class="form-error" role="alert" hidden></p>
+          </form>
+          <div class="auth-note">🔒 <span data-i18n="privacyNote">بيانات حسابج محفوظة على خادم التطبيق، من غير Supabase.</span></div>
+        </section>
+      </section>
+
+      <section id="dashboardView" class="dashboard" hidden>
+        <div class="dashboard-hero">
+          <div><div class="eyebrow"><span data-i18n="dashboardTag">لوحة الأمان</span> <span class="sparkle">✦</span></div><h1><span data-i18n="hello">ياهلا</span>، <span id="helloName"></span> <span class="wave">✿</span></h1><p data-i18n="dashboardSubtitle">أمان عائلتج بيدج. أي مشاركة تحتاج موافقة.</p></div>
+          <div id="roleBadge" class="role-badge"></div>
+        </div>
+        <div class="dashboard-grid">
+          <section class="card pair-card"><div class="card-head"><div class="card-icon">🔗</div><div><h2 data-i18n="pairTitle">ربط العائلة</h2><p data-i18n="pairSubtitle">رمز مؤقت وآمن للربط</p></div></div>
+            <div id="unpaired" hidden>
+              <div id="childPair" hidden><p class="muted" data-i18n="childPairInfo">طلّعي رمز الربط، وشاركِيه مباشرة مع ولي أمرج فقط.</p><button id="generateCode" class="btn primary full" type="button" data-i18n="generate">طلّعي رمز الربط</button><div id="codeBox" class="code-box" hidden><strong id="pairCode" dir="ltr"></strong><small id="codeExpiry"></small></div></div>
+              <form id="guardianPair" hidden><p class="muted" data-i18n="guardianPairInfo">اكتبي الرمز اللي ظهر على جهاز الطفل بموافقته.</p><label class="field"><span data-i18n="pairCodeLabel">رمز الربط (8 أرقام)</span><input id="pairCodeInput" dir="ltr" inputmode="numeric" pattern="[0-9]{8}" maxlength="8" placeholder="12345678" required></label><button class="btn primary full" type="submit" data-i18n="connect">ربط الحسابين</button></form>
+            </div>
+            <div id="paired" hidden><div class="connected-tag">✓ <span data-i18n="connected">مرتبطين بأمان</span></div><div class="partner-name" id="partnerName"></div><p class="muted" data-i18n="canUnlink">أي طرف يقدر يلغي الربط بأي وقت.</p><button id="unlinkBtn" type="button" class="btn outline small" data-i18n="unlink">إلغاء الربط</button></div>
+          </section>
+          <section class="card emergency-card"><div class="card-head"><div class="card-icon red">🆘</div><div><h2 data-i18n="emergency">مساعدة الطوارئ</h2><p data-i18n="emergencySubtitle">للحالات الحقيقية فقط</p></div></div><button id="sosBtn" class="btn sos full" type="button" data-i18n="sendSOS">إرسال تنبيه SOS للعائلة</button><p class="mini" data-i18n="sosDisclaimer">ينبّه الطرف المرتبط داخل التطبيق إذا كان متصلًا. لا يُرسل بلاغًا للشرطة.</p><a id="policeBtn" class="btn emergency-call full" href="tel:112">☎ <span data-i18n="police">اتصال بالطوارئ 112</span></a><p class="mini" data-i18n="callDisclaimer">يفتح اتصالًا على جهازج، وما يتصل تلقائيًا.</p></section>
+          <section class="card live-card"><div class="card-head"><div class="card-icon">🎥</div><div><h2 data-i18n="live">الكاميرا والمايك المباشر</h2><p data-i18n="liveSubtitle">بموافقة ظاهرة، وبدون تسجيل</p></div></div>
+            <div id="guardianLive" hidden><p class="muted" data-i18n="guardianLiveInfo">اضغطي طلب بث. الطرف الثاني يشوف الطلب ويقرر إذا يوافق.</p><button id="requestLive" class="btn primary full" type="button" data-i18n="requestLive">طلب بث مباشر</button><div id="requestPending" class="notice" hidden><span data-i18n="waiting">ننتظر موافقة الطرف الثاني…</span> <button id="cancelLive" class="btn outline tiny" type="button" data-i18n="cancel">إلغاء</button></div><div id="remoteWrap" class="video-wrap" hidden><div class="live-indicator">● LIVE</div><video id="remoteVideo" autoplay playsinline controls></video><p class="mini" data-i18n="soundHint">إذا ما سمعتي الصوت اضغطي تشغيل من الفيديو.</p><button id="endGuardianLive" class="btn outline full" type="button" data-i18n="endLive">إيقاف البث</button></div></div>
+            <div id="childLive" hidden><p class="muted" data-i18n="childLiveInfo">لا أحد يقدر يفتح كاميرتج أو مايكج بدون ما توافقين بنفسج.</p><div id="incomingLive" class="request-box" hidden><strong id="incomingText"></strong><p data-i18n="incomingExplain">البث يبدأ فقط بعد ما تضغطين موافقة ويطلب المتصفح إذنج للكاميرا والمايك.</p><div class="action-row"><button id="acceptLive" class="btn primary" type="button" data-i18n="accept">موافقة وبدء البث</button><button id="rejectLive" class="btn outline" type="button" data-i18n="reject">رفض</button></div></div><div id="localWrap" class="video-wrap" hidden><div class="live-indicator">● LIVE · 🎥 🎙️</div><video id="localVideo" autoplay playsinline muted></video><p class="mini" data-i18n="liveWarning">الكاميرا والمايك شغّالين الآن. تقدرين توقفينهم فورًا.</p><button id="endChildLive" class="btn outline full" type="button" data-i18n="endLive">إيقاف البث</button></div></div>
+            <div class="media-note">🛡️ <span data-i18n="mediaSafety">التطبيق ما يفتح الكاميرا أو المايك بالخلفية ولا يسجل المحتوى.</span></div>
+          </section>
+          <section class="card location-card"><div class="card-head"><div class="card-icon">📍</div><div><h2 data-i18n="location">الموقع</h2><p data-i18n="locationSubtitle">مشاركة لمرة واحدة بموافقتج</p></div></div><div id="childLocation" hidden><p class="muted" data-i18n="locationInfo">إذا تبين، شاركي موقعج الحالي مرة وحدة مع ولي الأمر.</p><button id="shareLocation" class="btn soft full" type="button" data-i18n="shareLocation">مشاركة موقعي الحالي</button></div><div id="guardianLocation" hidden><div id="noLocation" class="muted" data-i18n="noLocation">ما في موقع مشارَك حاليًا.</div><a id="mapLink" href="#" target="_blank" rel="noopener noreferrer" class="btn soft full" hidden data-i18n="openMap">عرض الموقع على الخريطة</a><p id="locationTime" class="mini"></p></div><p class="mini" data-i18n="locationDisclaimer">ما في تتبّع تلقائي أو مشاركة مستمرة للموقع.</p></section>
+        </div>
+        <section class="card activity-card"><div class="card-head"><div class="card-icon">🔔</div><div><h2 data-i18n="activity">سجل التنبيهات</h2><p data-i18n="activitySubtitle">آخر تنبيهات SOS داخل العائلة</p></div></div><ul id="alertsList" class="alerts-list"><li data-i18n="noAlerts">ما في تنبيهات للحين.</li></ul></section>
+      </section>
+    </main>
+    <footer>Made for families, with consent · SafePulse X <span>♥</span> <a href="https://www.e.gov.kw/sites/kgoarabic/Pages/Visitors/TourismInKuwait/EssintialServicesEmergencies.aspx" target="_blank" rel="noopener noreferrer" data-i18n="official">أرقام الطوارئ الرسمية</a></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
